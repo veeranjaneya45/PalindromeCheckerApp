@@ -37,6 +37,6 @@ public class Main {
         boolean result = service.checkPalindrome(input);
 
         System.out.println("Input : " + input);
-        System.out.println("Is Palindrome? : " + result);
+        System.out.println("Is Palindrome? : " + isPalindrome);
     }
 }
