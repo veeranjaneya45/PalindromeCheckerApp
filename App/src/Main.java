@@ -9,11 +9,20 @@
  * ===============================================================
  */
 
-import java.util.*;
+class Node {
+    char data;
+    Node next;
+
+    Node(char data) {
+        this.data = data;
+        this.next = null;
+    }
+}
 
 public class Main{
 
-    public static void main(String[] args) {
+    // Function to check palindrome
+    public static boolean isPalindrome(Node head) {
 
         String input = "refer";
 
@@ -33,6 +42,6 @@ public class Main{
         }
 
         System.out.println("Input : " + input);
-        System.out.println("Is Palindrome? : " + isPalindrome);
+        System.out.println("Is Palindrome? : " + result);
     }
 }
