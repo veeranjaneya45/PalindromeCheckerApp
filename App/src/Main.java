@@ -1,67 +1,42 @@
 /**
  * ===============================================================
- * MAIN CLASS – UseCase12PalindromeCheckerApp
- * Use Case 12: Strategy Pattern for Palindrome Algorithms
+ * MAIN CLASS – UseCase11PalindromeCheckerApp
+ * Use Case 11: Object-Oriented Palindrome Service
+ *
+ * Description:
+ * Encapsulates palindrome logic in a PalindromeService class.
  *
  * Author  : Veeranjaneya
  * Version : 1.0
  * ===============================================================
  */
 
-import java.util.*;
+class PalindromeService {
 
-// Strategy Interface
-interface PalindromeStrategy {
-    boolean check(String input);
-}
+    public boolean checkPalindrome(String input) {
+        int start = 0;
+        int end = input.length() - 1;
 
-// Stack Strategy
-class StackStrategy implements PalindromeStrategy {
-    public boolean check(String input) {
-        Stack<Character> stack = new Stack<>();
-
-        for (char c : input.toCharArray())
-            stack.push(c);
-
-        for (char c : input.toCharArray())
-            if (c != stack.pop())
+        while (start < end) {
+            if (input.charAt(start) != input.charAt(end))
                 return false;
-
+            start++;
+            end--;
+        }
         return true;
     }
 }
 
-// Deque Strategy
-class DequeStrategy implements PalindromeStrategy {
-    public boolean check(String input) {
-        Deque<Character> dq = new ArrayDeque<>();
-        for (char c : input.toCharArray())
-            dq.addLast(c);
-
-        while (dq.size() > 1)
-            if (dq.removeFirst() != dq.removeLast())
-                return false;
-
-        return true;
-    }
-}
-
-// Main App
 public class Main {
 
     public static void main(String[] args) {
 
+        PalindromeService service = new PalindromeService();
         String input = "level";
 
-        PalindromeStrategy strategy;
-
-        // choose algorithm dynamically
-        strategy = new StackStrategy();
-        // strategy = new DequeStrategy();
-
-        boolean result = strategy.check(input);
+        boolean result = service.checkPalindrome(input);
 
         System.out.println("Input : " + input);
-        System.out.println("Is Palindrome? : " + result);
+        System.out.println("Is Palindrome? : " + isPalindrome);
     }
 }
