@@ -1,108 +1,53 @@
 /**
  * ===============================================================
- * MAIN CLASS – UseCase8PalindromeCheckerApp
+ * MAIN CLASS – UseCase10PalindromeCheckerApp
  * ===============================================================
- * Use Case 8: Linked List Based Palindrome Checker
+ * Use Case 10: Normalized Palindrome Validation
  *
  * Description:
- * This class checks whether a string is a palindrome
- * using a Singly Linked List.
+ * This class validates a palindrome after preprocessing
+ * the input string.
  *
- * Flow:
- * 1. Convert string to linked list
- * 2. Find middle using fast & slow pointers
- * 3. Reverse second half of list
- * 4. Compare both halves
+ * Normalization includes:
+ * - Removing spaces and symbols
+ * - Converting to lowercase
  *
- * Key Concepts:
- * - Singly Linked List
- * - Node Traversal
- * - Fast & Slow Pointer Technique
- * - In-Place Reversal
+ * This ensures the palindrome check is logical rather
+ * than character-format dependent.
+ *
+ * Example:
+ * "A man a plan a canal Panama"
  *
  * Author  : Veeranjaneya
  * Version : 1.0
  * ===============================================================
  */
 
-class Node {
-    char data;
-    Node next;
-
-    Node(char data) {
-        this.data = data;
-        this.next = null;
-    }
-}
-
 public class Main {
 
-    // Function to check palindrome
-    public static boolean isPalindrome(Node head) {
-
-        if (head == null || head.next == null)
-            return true;
-
-        Node slow = head;
-        Node fast = head;
-
-        // Find middle
-        while (fast.next != null && fast.next.next != null) {
-            slow = slow.next;
-            fast = fast.next.next;
-        }
-
-        // Reverse second half
-        Node secondHalf = reverse(slow.next);
-
-        Node firstHalf = head;
-        Node temp = secondHalf;
-
-        // Compare halves
-        while (temp != null) {
-            if (firstHalf.data != temp.data)
-                return false;
-            firstHalf = firstHalf.next;
-            temp = temp.next;
-        }
-
-        return true;
-    }
-
-    // Reverse linked list
-    public static Node reverse(Node head) {
-        Node prev = null;
-        Node curr = head;
-
-        while (curr != null) {
-            Node nextTemp = curr.next;
-            curr.next = prev;
-            prev = curr;
-            curr = nextTemp;
-        }
-        return prev;
-    }
-
+    /**
+     * Application entry point for UC10.
+     *
+     * @param args Command-line arguments
+     */
     public static void main(String[] args) {
 
-        String input = "madam";
+        String input = "A man a plan a canal Panama";
 
-        // Convert string to linked list
-        Node head = null, tail = null;
+        // Normalize string: remove non-letters and convert to lowercase
+        String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
 
-        for (char c : input.toCharArray()) {
-            Node newNode = new Node(c);
-            if (head == null) {
-                head = tail = newNode;
-            } else {
-                tail.next = newNode;
-                tail = newNode;
+        boolean isPalindrome = true;
+
+        // Compare characters from both ends
+        for (int i = 0; i < normalized.length() / 2; i++) {
+            if (normalized.charAt(i) != normalized.charAt(normalized.length() - 1 - i)) {
+                isPalindrome = false;
+                break;
             }
         }
 
-        boolean result = isPalindrome(head);
-
         System.out.println("Input : " + input);
-        System.out.println("Is Palindrome? : " + result);
+        System.out.println("Is Palindrome? : " + isPalindrome);
     }
 }
