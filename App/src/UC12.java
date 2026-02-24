@@ -47,7 +47,7 @@ class DequeStrategy implements PalindromeStrategy {
 }
 
 // Main App
-public class UseCase12PalindromeCheckerApp {
+public class UC12 {
 
     public static void main(String[] args) {
 
