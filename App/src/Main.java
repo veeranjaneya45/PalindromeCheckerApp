@@ -1,42 +1,58 @@
 /**
- * =========================================================
- * MAIN CLASS - UseCase1PalindromeCheckerApp
- * =========================================================
- *
- * Use Case 1: Application Entry & Welcome Message
+ * ===============================================================
+ * MAIN CLASS – UseCase6PalindromeCheckerApp
+ * ===============================================================
+ * Use Case 6: Queue + Stack Palindrome Checker
  *
  * Description:
- * This class represents the entry point of the
- * Palindrome Checker Management System.
+ * This program checks whether a given string is a palindrome
+ * using two data structures:
+ * 1. Queue  (FIFO – First In First Out)
+ * 2. Stack  (LIFO – Last In First Out)
  *
- * At this stage, the application:
- * - Starts execution from the main() method
- * - Displays a welcome message
- * - Shows application version
+ * Characters are inserted into both structures and then
+ * compared by removing from queue front and stack top.
+ * If all characters match → String is Palindrome.
  *
- * No palindrome logic is implemented yet.
- *
- * The goal is to establish a clear startup flow.
- *
- * @author Veeranjaneya Reddy
- * @version 1.0
+ * Author  : Veeranjaneya
+ * Version : 1.0
+ * ===============================================================
  */
+
+import java.util.*;
 
 public class Main {
 
-    /**
-     * Application entry point.
-     *
-     * This is the first method executed by the JVM
-     * when the program starts.
-     *
-     * @param args Command-line arguments
-     */
     public static void main(String[] args) {
 
-        System.out.println("Welcome to the Palindrome Checker Management System");
-        System.out.println("Version : 1.0");
-        System.out.println("System initialized successfully.");
+        // Define input string to validate
+        String input = "civic";
 
+        // Create Queue (FIFO)
+        Queue<Character> queue = new LinkedList<>();
+
+        // Create Stack (LIFO)
+        Stack<Character> stack = new Stack<>();
+
+        // Insert characters into Queue and Stack
+        for(char c : input.toCharArray()) {
+            queue.add(c);
+            stack.push(c);
+        }
+
+        // Flag to track palindrome status
+        boolean isPalindrome = true;
+
+        // Compare Queue dequeue with Stack pop
+        while(!queue.isEmpty()) {
+            if(queue.remove() != stack.pop()) {
+                isPalindrome = false;
+                break;
+            }
+        }
+
+        // Print result
+        System.out.println("Input : " + input);
+        System.out.println("Is Palindrome? : " + isPalindrome);
     }
 }
