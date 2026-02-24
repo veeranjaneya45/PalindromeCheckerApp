@@ -8,7 +8,7 @@
  * ===============================================================
  */
 
-public class UC13 {
+public class Main {
 
     public static boolean checkPalindrome(String s) {
         int start = 0;
